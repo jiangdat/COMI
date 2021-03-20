@@ -39,9 +39,9 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 #### Tensorflow ≥ 1.14.0
 
 ## Installation
-Clone this repo:
-    git clone https://github.com/jiangdat/COMI
-    cd COMI
+### Clone this repo:
+     git clone https://github.com/jiangdat/COMI
+     cd COMI
 
 ## Train
 ### Download train datasets
