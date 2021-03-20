@@ -31,19 +31,23 @@
 
 
 ## Datasets
-
-
+  
+   We collect and publish two datasets for correcting out-of-focus microscopic images, including Leishmania parasite dataset which captured by captured under two bright-field light microscopes (Leica DM2700P and Olympus IX53), and Bovine Pulmonary Artery Endothelial Cells (BPAEC) dataset which captured by a confocal laser scanning microscopy in z-stack module.
+   ![](https://github.com/jiangdat/COMI/raw/main/figure/table1.png)
+   
+   BPAEC dataset includes 100 sets images for 3 components, which means 297 in-focus images and 1,782 out-of-focus images. Examples of each categories are shown in Figure 1B. The details of images used in this study can be summarized at Table 1.
+![](https://github.com/jiangdat/COMI/raw/main/figure/figure1.png)
 
 ## Train
 
-### set the parameter path in file deblur.py,then using:
+### set the parameter path in file deblur.py, then using:
     python deblur.py
 
 
 
 ## Test
 
-### set the parameter path in file test.py,then using:
+### set the parameter path in file test.py, then using:
     python test.py
 
 ## Apply a pre-trained model
@@ -65,9 +69,10 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 ![](https://github.com/jiangdat/COMI/raw/main/figure/figure4.png)
 
 
+## Related Projects
 ### links of other models we have compared
 
-#### link for "Unnatural L0 Sparse Representation for Natural Image Deblurring" : 
+#### link for "Unnatural L0 Sparse Representation for Natural Image Deblurring"(L0-regularized) : 
     http://www.cse.cuhk.edu.hk/~leojia/projects/l0deblur/
 
 #### link for "Deblurgan: Blind motion deblurring using conditional adversarial networks" : 
@@ -75,3 +80,14 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 
 #### link for "Deblurgan-v2: Deblurring (orders-of-magnitude) faster and better" : 
     https://github.com/TAMU-VITA/DeblurGANv2
+
+#### link for "Image-to-Image Translation with Conditional Adversarial Networks"(pix2pix) : 
+    https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+
+#### link for"Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks"(CycleGAN):
+    https://junyanz.github.io/CycleGAN
+
+
+## Object Detection
+#### For object detection, you should follow the instruction of Yolov3. Link for Yolov3 : 
+    https://pjreddie.com/darknet/yolo/
