@@ -16,7 +16,7 @@
 
 
 
-## Prerequisites
+## 1. Prerequisites
 #### Python ≥ 3.6 
 
 #### Keras ≥ 2.2.4 
@@ -24,13 +24,13 @@
 #### Tensorflow ≥ 1.14.0
 
 
-## Installation
+## 2. Installation
 ### Clone this repo:
      git clone https://github.com/jiangdat/COMI
      cd COMI
 
 
-## Datasets
+## 3. Datasets
   
    We collect and publish two datasets for correcting out-of-focus microscopic images, including Leishmania parasite dataset which captured by captured under two bright-field light microscopes (Leica DM2700P and Olympus IX53), and Bovine Pulmonary Artery Endothelial Cells (BPAEC) dataset which captured by a confocal laser scanning microscopy in z-stack module.
    ![](https://github.com/jiangdat/COMI/raw/main/figure/table1.png)
@@ -38,22 +38,25 @@
    BPAEC dataset includes 100 sets images for 3 components, which means 297 in-focus images and 1,782 out-of-focus images. Examples of each categories are shown in Figure 1B. The details of images used in this study can be summarized at Table 1.
 ![](https://github.com/jiangdat/COMI/raw/main/figure/figure1.png)
 
-## Train
+#### download our datasets:
+    https://data.mendeley.com/drafts/m3jxgb54c9
+
+## 4. Train
 
 ### set the parameter path in file deblur.py, then using:
     python deblur.py
 
 
 
-## Test
+## 5. Test
 
 ### set the parameter path in file test.py, then using:
     python test.py
 
-## Apply a pre-trained model
+## 6. Apply a pre-trained model
 
 
-## Results
+## 7. Results
 
 
 Leishmania microscopic images deblur results from different methods. Our method significantly improves the quality of out-of-focus blurred images and generates relatively sharp deblurred compared to original in-focus images. Details, like flagella, can be visible, demonstrating the generalizability of our network on a new type of sample (Leishmania parasite) that it has never seen before.
@@ -69,7 +72,7 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 ![](https://github.com/jiangdat/COMI/raw/main/figure/figure4.png)
 
 
-## Related Projects
+## 8. Related Projects
 ### links of other models we have compared
 
 #### link for "Unnatural L0 Sparse Representation for Natural Image Deblurring"(L0-regularized) : 
@@ -88,6 +91,6 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
     https://junyanz.github.io/CycleGAN
 
 
-## Object Detection
+## 9. Object Detection
 #### For object detection, you should follow the instruction of Yolov3. Link for Yolov3 : 
     https://pjreddie.com/darknet/yolo/
