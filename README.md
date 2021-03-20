@@ -32,27 +32,29 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 
 
 ## Prerequisites
-Python 3.6 \
+Python ≥ 3.6 \
 
-Keras 2.2.4 \
+Keras ≥ 2.2.4 \
 
-Tensorflow 1.14.0
+Tensorflow ≥ 1.14.0
 
 ## Installation
-### Clone this repo:
-git clone https://github.com/jiangdat/COMI
-cd COMI
+Clone this repo:
+    git clone https://github.com/jiangdat/COMI
+    cd COMI
 
 ## Train
 ### Download train datasets
 
-### Train a model
+### Train model
     python deblur.py
 
 ## Test
 ### Download test datasets
 
-### Test
+### Test model
     python test.py
+
 ## Apply a pre-trained model
+
 
