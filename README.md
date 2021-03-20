@@ -43,18 +43,21 @@
 
 ## 4. Train
 
-### set the parameter path in file deblur.py, then using:
+#### set the parameter and path in file deblur.py, then using:
     python deblur.py
 
 
 
 ## 5. Test
 
-### set the parameter path in file test.py, then using:
+#### set the parameter and path in file test.py, then using:
     python test.py
 
 ## 6. Apply a pre-trained model
 
+#### download our pre-trainde model from link:
+
+#### here can download the picture named "Out-of-focus image" in Figure3.
 
 ## 7. Results
 
