@@ -44,15 +44,15 @@ git clone https://github.com/jiangdat/COMI
 cd COMI
 
 ## Train
-### Download the train datasets
+### Download train datasets
 
 ### Train a model
-   python train.py
+    python deblur.py
 
 ## Test
-### Download the test datasets
+### Download test datasets
 
-
+### Test
+    python test.py
 ## Apply a pre-trained model
-### You can download a pretrained model (e.g. horse2zebra) with the following script:
 
