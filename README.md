@@ -10,15 +10,24 @@ Target Generator translates in-focus image to out-of-focus image and Source Disc
 
 
 
+
+
+
 Leishmania microscopic images deblur results from different methods. Our method significantly improves the quality of out-of-focus blurred images and generates relatively sharp deblurred compared to original in-focus images. Details, like flagella, can be visible, demonstrating the generalizability of our network on a new type of sample (Leishmania parasite) that it has never seen before.
 
 ![](https://github.com/jiangdat/COMI/raw/main/figure/figure3.png)
 
 
 
+
+
+
 Deep-learning-based images reconstruction for subcellular structures. Out-of-focus images come from layer 1 and in-focus images come from layer 4. A. Nucleus. B. Actin. C. Mitochondria. The in-focus image has a very sharp structure, while the out-of-focus images are blurred and noisy. Obviously, the images corrected by our method is very similar to the in-focus image in terms of smoothness, continuity, and thickness. Experiments were repeated, achieving similar results.
 
 ![](https://github.com/jiangdat/COMI/raw/main/figure/figure4.png)
+
+
+
 
 
 
