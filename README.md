@@ -34,7 +34,8 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 ## Prerequisites
 Python 3.6 \
 
-Keras 2.2.4 
+Keras 2.2.4 \
+
 Tensorflow 1.14.0
 
 ## Installation
@@ -46,6 +47,7 @@ cd COMI
 ### Download the train datasets
 
 ### Train a model
+   python train.py
 
 ## Test
 ### Download the test datasets
