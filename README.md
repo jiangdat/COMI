@@ -32,8 +32,9 @@ Deep-learning-based images reconstruction for subcellular structures. Out-of-foc
 
 
 ## Prerequisites
-Python 3.6 \<br>
-Keras 2.2.4 \<br>
+Python 3.6 \
+
+Keras 2.2.4 
 Tensorflow 1.14.0
 
 ## Installation
