@@ -15,8 +15,14 @@ As the figure below shows,A contains a pair of images which represent In-focus a
 ![](https://github.com/jiangdat/COMI/raw/main/figure/figure1.png)
 
 
+##Prerequisites
 
+##Installation
 
+##Train
 
+##Test
 
+##Apply a pre-trained model
 
+##Datasets
