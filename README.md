@@ -8,12 +8,16 @@
 
 
 ## 1. Prerequisites
-#### Python ≥ 3.6 
 
-#### Keras ≥ 2.2.4 
+#### Ubuntu 16.04 
 
-#### Tensorflow ≥ 1.14.0
+#### Tesla K40C GPU
 
+#### Python 3.6 
+
+#### Keras 2.2.4 
+
+#### Tensorflow 1.14.0
 
 ## 2. Installation
 ### Clone this repo:
