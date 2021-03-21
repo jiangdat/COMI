@@ -50,6 +50,7 @@
 
 
 Microscopic images deblur results from different methods. Our method significantly improves the quality of out-of-focus blurred images.
+   
 ![result of deblured image ](https://github.com/jiangdat/COMI/raw/main/figure/result_github.png)
 
 
