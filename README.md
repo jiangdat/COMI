@@ -55,7 +55,7 @@ the pre-trained model can be used directly for testing.
 ## 7. Results
 
 
-Microscopic images deblur results from different methods. Our method significantly improves the quality of out-of-focus blurred images.
+Our method significantly improves the quality of out-of-focus blurred images.
    
 ![result of deblured image ](https://github.com/jiangdat/COMI/raw/main/figure/result_github.png)
 
