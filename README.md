@@ -47,8 +47,10 @@
 ## 6. Apply a pre-trained model
 
 #### download our pre-trainde model from link:
+    https://drive.google.com/file/d/18-f9IEZn-o_C86UPjXFQv8LGM8J45nk5/view?usp=sharing
 
-#### here can download the picture named "Out-of-focus image" in Figure3.
+#### the picture "Out-of-focus image" in figure3 of our paper can download from the folder testPicture to test the pre-trained model.
+
 
 ## 7. Results
 
