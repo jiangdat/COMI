@@ -23,7 +23,9 @@
 ## 3. Datasets
   
    We collect and publish two datasets for correcting out-of-focus microscopic images, including Leishmania parasite dataset  and Bovine Pulmonary Artery Endothelial Cells (BPAEC) dataset.
-   ![table1.png](https://github.com/jiangdat/COMI/raw/main/figure/table1.png)
+   
+   
+![table1.png](https://github.com/jiangdat/COMI/raw/main/figure/table1.png)
    
 #### download our datasets:
     https://data.mendeley.com/datasets/m3jxgb54c9/4
