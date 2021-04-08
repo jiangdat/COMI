@@ -31,7 +31,7 @@ from keras.utils import multi_gpu_model
 from scipy.stats import pearsonr
 
 def load_confocal(input_shape=None, set=None, z_depth=None):
-    dir = '/home/sudong/confocal/' + set
+    dir = './confocal/' + set
     lr_lq_set = []
     hr_lq_set = []
     lr_hq_set = []
@@ -51,8 +51,6 @@ def load_confocal(input_shape=None, set=None, z_depth=None):
                 hr_hq_set.append(img)
                 img = cv2.resize(img_hq, (input_shape[0], input_shape[1]))
                 lr_hq_set.append(img)
-
-    # hrhq, lrhq, hrlq, lrlq = shuffle(hr_hq_set, lr_hq_set, hr_lq_set, lr_lq_set)
     hrhq, lrhq, hrlq, lrlq = hr_hq_set, lr_hq_set, hr_lq_set, lr_lq_set
 
     hrhq_train = hrhq
@@ -80,7 +78,6 @@ def load_confocal(input_shape=None, set=None, z_depth=None):
                 img = cv2.resize(img_hq, (input_shape[0], input_shape[1]))
                 lr_hq_set.append(img)
 
-    # hrhq, lrhq, hrlq, lrlq = shuffle(hr_hq_set, lr_hq_set, hr_lq_set, lr_lq_set)
     hrhq, lrhq, hrlq, lrlq = hr_hq_set, lr_hq_set, hr_lq_set, lr_lq_set
 
     hrhq_test = hrhq
@@ -89,7 +86,6 @@ def load_confocal(input_shape=None, set=None, z_depth=None):
     lrlq_test = lrlq
 
     hrhq_train = np.array(hrhq_train)
-    # hrhq_train = hrhq_train.astype('float32') /127.5 - 1.
     hrhq_train = hrhq_train.astype('float32') /127.5 - 1.
     hrhq_test = np.array(hrhq_test)
     hrhq_test = hrhq_test.astype('float32')  /127.5 - 1.
@@ -126,11 +122,7 @@ class RandomWeightedAverage(_Merge):
 
 class StarGAN(object):
     def __init__(self):
-
-        # Model configuration.
         self.channels = 3
-        # self.lr_height = 180                 # Low resolution height
-        # self.lr_width = 320                  # Low resolution width
         self.lr_height = 128                 # Low resolution height
         self.lr_width = 128                  # Low resolution width
         self.lr_shape = (self.lr_height, self.lr_width, self.channels)
@@ -181,8 +173,6 @@ class StarGAN(object):
         self.generator_lq2hq = self.build_generator(name='gen_lq2hq')
         self.generator_hq2lq = self.build_generator(name='gen_hq2lq')
 
-        # High res. and low res. images
-        # img_hrhq = Input(shape=self.hr_shape)
         img_lq = Input(shape=self.hr_shape)
         img_hq = Input(shape=self.hr_shape)
 
@@ -228,19 +218,13 @@ class StarGAN(object):
         Builds a pre-trained VGG19 model that outputs image features extracted at the
         third block of the model
         """
-        # vgg = VGG16(include_top=False, weights="/home/amax/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5")
-        # vgg.outputs = [vgg.layers[8].output]
-        vgg = VGG19(include_top=False, weights="/home/sudong/vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5")
+        vgg = VGG19(include_top=False, weights="./model/vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5")
         vgg.outputs = [vgg.layers[9].output]
         img = Input(shape=self.hr_shape)
-
-        # Extract image features
-        # with tf.device('/gpu:0') :
         img_features = vgg(img)
         model = Model(img, img_features, name=name)
         model.summary()
         return model
-
 
     def build_generator(self, name=None):
         def residual_block(layer_input, filters):
@@ -258,7 +242,6 @@ class StarGAN(object):
 
         # with tf.device('/gpu:0') :
             # Pre-residual block
-        #c1 = Conv2D(64, kernel_size=9, strides=1, padding='same')(img_lr)
         c1 = Conv2D(64, kernel_size=7, strides=1, padding='same')(img_lr)
         c1 = InstanceNormalization()(c1)
         c1 = Activation('relu')(c1)
@@ -322,8 +305,6 @@ class StarGAN(object):
         x = Dense(1, activation='sigmoid')(x)
 
         model = Model(inputs=inputs, outputs=x, name=name)
-
-
         model.summary()
         return model
 
@@ -335,22 +316,10 @@ class StarGAN(object):
                 d = BatchNormalization()(d)
             d = LeakyReLU(alpha=0.2)(d)
             return d
-
-        # with tf.device('/gpu:0'):
-        # Input img
+        
         d0 = Input(shape=self.lr_shape)
-        # d1 = d_block(d0, self.df, bn=False)
-        # d2 = d_block(d1, self.df, strides=2)
-        # d3 = d_block(d2, self.df * 2)
-        # d4 = d_block(d3, self.df * 2, strides=2)
-        # # d5 = d_block(d4, self.df * 4)
-        # # d6 = d_block(d5, self.df * 4, strides=2)
-        # # d7 = d_block(d6, self.df * 8)
-        # # d8 = d_block(d7, self.df * 8, strides=2)
-
         d1 = d_block(d0, self.df, bn=False)
         d2 = d_block(d1, self.df, strides=2)
-        # d3 = d_block(d2, self.df * 2)
         d4 = d_block(d2, self.df * 2, strides=2)
 
         d9 = Dense(self.df * 4)(d4)
@@ -362,7 +331,6 @@ class StarGAN(object):
         return Model(d0, validity)
 
     def train(self, model, epochs, batch_size, sample_interval, set=None, z_depth=None):
-        # input_shape = (180, 320, 3)
         input_shape = (128, 128, 3)
         start_time = datetime.datetime.now()
         weigths_dir = model + '_weights'
@@ -389,8 +357,6 @@ class StarGAN(object):
                             1e-4 * (epochs - epoch) / (epochs - int(epochs/2)))
                 K.set_value(self.discriminator_lq_m.optimizer.lr,
                             1e-4 * (epochs - epoch) / (epochs - int(epochs/2)))
-                # K.set_value(self.combined.optimizer.lr,
-                #             1e-4 * (epochs - epoch) / (epochs - int(epochs/2)))
                 K.set_value(self.combined_hq_m.optimizer.lr,
                             1e-4 * (epochs - epoch) / (epochs - int(epochs / 2)))
                 K.set_value(self.combined_lq_m.optimizer.lr,
@@ -403,8 +369,6 @@ class StarGAN(object):
 
             valid_hr = np.ones((batch_size,) + self.disc_patch_hr)
             fake_hr = np.zeros((batch_size,) + self.disc_patch_hr)
-
-            # Train the discriminators (original images = real / generated = Fake)
 
             d_loss_real_hr = self.discriminator_hq_m.train_on_batch(imgs_hrhq_train, valid_hr)
             d_loss_fake_hr = self.discriminator_hq_m.train_on_batch(fake_hrhq, fake_hr)
@@ -425,11 +389,6 @@ class StarGAN(object):
             image_features_lq = self.vgg_lq.predict(imgs_hrlq_train)
 
             # Train the generators
-
-            # g_loss = self.combined.train_on_batch([imgs_hrlq_train, imgs_hrhq_train],
-            #                                       [valid_hr, valid_hr, valid_hr, valid_hr,
-            #                                        image_features_hq, image_features_lq,
-            #                                        image_features_hq, image_features_lq])
             g_loss_hq = self.combined_hq_m.train_on_batch([imgs_hrlq_train, imgs_hrhq_train],
                                                   [valid_hr, valid_hr,
                                                    image_features_hq,
@@ -475,9 +434,7 @@ class StarGAN(object):
                     SSIM += s
                     psnr.append(p)
                     ssim.append(s)
-                # print('PSNR : ' + str(psnr))
                 print('generated hrhq mean PSNR : ' + str(PSNR / hrhq_test.shape[0]))
-                # print('SSIM : ' + str(SSIM))
                 print('generated hrhq mean SSIM : ' + str(SSIM / hrhq_test.shape[0]))
 
                 for i in range(hrhq_test.shape[0]):
@@ -487,39 +444,16 @@ class StarGAN(object):
                     SSIM_lr += s_lr
                     psnr_lr.append(p_lr)
                     ssim_lr.append(s_lr)
-                # print('PSNR : ' + str(psnr))
                 print('reconstr hrlq mean PSNR : ' + str(PSNR_lr / hrhq_test.shape[0]))
-                # print('SSIM : ' + str(SSIM))
                 print('reconstr hrlq mean SSIM : ' + str(SSIM_lr/ hrhq_test.shape[0]))
 
                 self.save_imgs(img_dir, epoch, hrhq_test, hrlq_test)
 
-        # if (epoch + 1) % self.model_save_step == 0:
-            #     self.G.save_weights(os.path.join(self.model_save_dir, 'G_weights.hdf5'))
-            #     self.D.save_weights(os.path.join(self.model_save_dir, 'D_weights.hdf5'))
-            #     self.train_D.save_weights(os.path.join(self.model_save_dir, 'train_D_weights.hdf5'))
-            #     self.train_G.save_weights(os.path.join(self.model_save_dir, 'train_G_weights.hdf5'))
 
     def PSNR(self, img1, img2):
-        # mse = np.mean((img1 / 1. - img2 / 1.) ** 2)
-        # if mse == 0:
-        #     return 100
-        # PIXEL_MAX = 1
-        # return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
         return compare_psnr(img1, img2, 1)
 
     def SSIM(self, img1, img2):
-        # u_true = np.mean(img1)
-        # u_pred = np.mean(img2)
-        # var_true = np.var(img1)
-        # var_pred = np.var(img2)
-        # std_true = np.sqrt(var_true)
-        # std_pred = np.sqrt(var_pred)
-        # c1 = np.square(0.01 * 7)
-        # c2 = np.square(0.03 * 7)
-        # ssim = (2 * u_true * u_pred + c1) * (2 * std_pred * std_true + c2)
-        # denom = (u_true ** 2 + u_pred ** 2 + c1) * (var_pred + var_true + c2)
-        # return ssim / denom
         return compare_ssim(img1, img2, data_range=1, multichannel=True)
 
     def save_imgs(self, img_dir, epoch, imgs_hrhq, imgs_hrlq):
@@ -552,17 +486,10 @@ class StarGAN(object):
 
 
 if __name__ == '__main__':
-    # acgan + mnist dataset
     import time
     print("Start : %s" % time.ctime())
-    # time.sleep(15 * 10 * 60)
     print("Start : %s" % time.ctime())
     os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1, 2, 3"
-
-    # cfg = tf.ConfigProto(allow_soft_placement=True)  # because no supported kernel for GPU devices is available
-    # cfg.gpu_options.allow_growth = True
-    # session = tf.Session(config=cfg)
-    # keras.backend.set_session(session)
     dcgan = StarGAN()
     save_num = 100
     epoch = 25000
