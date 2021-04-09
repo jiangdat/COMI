@@ -47,7 +47,7 @@
 ## 6. Apply a pre-trained model
 
 #### download our pre-trainde model from link:
-    https://drive.google.com/file/d/18-f9IEZn-o_C86UPjXFQv8LGM8J45nk5/view?usp=sharing
+    https://drive.google.com/drive/folders/13R9fZ45IyPdJrq-ATHatPc_j_977qsT3?usp=sharing
 
 the pre-trained model can be used directly for testing.
 
@@ -57,7 +57,7 @@ the pre-trained model can be used directly for testing.
 
 Our method significantly improves the quality of out-of-focus blurred images.
    
-![result of deblured image ](https://github.com/jiangdat/COMI/raw/main/figure/result_github.png)
+![result of deblured image ](https://github.com/jiangdat/COMI/raw/main/figure/result_github.tif)
 
 
 ## 8. Related Projects
