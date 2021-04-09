@@ -57,7 +57,7 @@ the pre-trained model can be used directly for testing.
 
 Our method significantly improves the quality of out-of-focus blurred images.
    
-![result of deblured image ](https://github.com/jiangdat/COMI/raw/main/figure/result_github.tif)
+![result of deblured image ](https://github.com/jiangdat/COMI/raw/main/figure/result_github.png)
 
 
 ## 8. Related Projects
